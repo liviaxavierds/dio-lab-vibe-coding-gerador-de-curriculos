@@ -1,46 +1,41 @@
-# Aderente — Matchmaking de Vagas e Currículos ATS
+## Qual problema a aplicação resolve?
 
-Aplicação desenvolvida durante o Bootcamp da DIO com o objetivo de facilitar a adaptação de currículos para vagas específicas, utilizando análise de requisitos e inteligência artificial sem inventar informações sobre o candidato.
+A aplicação foi desenvolvida para pessoas que estão em busca de uma nova oportunidade profissional e precisam adaptar seus currículos para diferentes vagas. Nesse processo, pode ser difícil entender o quanto o perfil do candidato está alinhado aos requisitos de cada oportunidade e quais informações do currículo precisam ser destacadas.
 
-## Sobre o projeto
+A plataforma ajuda a resolver esse problema ao analisar a vaga e compará-la com o currículo do candidato, apresentando um match de compatibilidade e indicando quais requisitos estão contemplados, quais possuem correspondência parcial e quais não foram identificados no currículo. A partir dessa análise, a aplicação também gera uma versão do currículo otimizada para ATS (Applicant Tracking System) e direcionada à vaga, reorganizando e destacando informações relevantes do currículo original para melhorar sua adequação aos critérios utilizados nesses sistemas.
 
-O Aderente permite que o candidato cole o link de uma vaga de emprego e compare os requisitos encontrados no anúncio com as informações presentes em seu currículo.
+Um princípio fundamental da aplicação é a transparência: nenhuma informação é inventada para aumentar artificialmente o match. Experiências, competências, ferramentas, formações ou qualquer outra informação adicionada ao currículo personalizado precisam estar presentes no currículo original ou ser explicitamente confirmadas pelo usuário.
 
-A partir dessa análise, a aplicação identifica:
+Dessa forma, a plataforma não busca criar um candidato diferente para cada vaga, mas ajudar o candidato a apresentar melhor, para cada oportunidade, aquilo que ele realmente possui.
+
+<img width="1917" height="867" alt="image" src="https://github.com/user-attachments/assets/313de252-8afb-4fc7-b2ba-a53439beccee" />
+
+## Como é feita a análise
+
+A aplicação permite que o candidato cole o link de uma vaga de emprego e compare os requisitos descritos no anúncio com as informações presentes em seu currículo.
+
+A partir dessa comparação, a aplicação identifica:
 
 - requisitos que possuem correspondência com o currículo;
-- requisitos parcialmente atendidos;
-- informações que não foram identificadas no currículo;
+- requisitos com correspondência parcial;
+- requisitos que não foram identificados no currículo;
 - palavras-chave relevantes para a vaga;
 - pontos de atenção;
 - oportunidades de adaptação do currículo.
 
-Depois da análise, o usuário pode gerar uma versão do currículo otimizada para ATS (Applicant Tracking System), mantendo apenas informações que estejam presentes no currículo original ou que tenham sido explicitamente confirmadas pelo candidato.
+O resultado apresenta não apenas o nível de compatibilidade, mas também as evidências encontradas no currículo que justificam cada correspondência - dessa forma, o candidato consegue entender de onde vem o resultado da análise e quais pontos pode melhorar ou esclarecer. Quando existe uma possível correspondência, mas não há informações suficientes para confirmá-la, a aplicação sinaliza a situação e permite que o usuário confirme ou complemente a informação antes que ela seja utilizada.
 
-A proposta central do projeto é:
+Após a análise, o usuário pode gerar uma versão do currículo otimizada para ATS (Applicant Tracking System) e direcionada à vaga. Essa versão reorganiza e destaca as informações mais relevantes para a oportunidade, utilizando somente dados presentes no currículo original ou informações explicitamente confirmadas pelo candidato.
 
-> **O currículo pode ser otimizado, mas nunca falsificado.**
+## Requisitos da aplicação
 
----
-
-## Qual problema a aplicação resolve?
-
-Um dos problemas enfrentados por candidatos durante uma busca de emprego é a dificuldade de adaptar o currículo para diferentes vagas sem saber exatamente quais informações devem receber destaque.
-
-Uma mesma pessoa pode se candidatar a várias posições que exigem competências diferentes. Um currículo genérico pode não destacar adequadamente as experiências mais relevantes para cada oportunidade.
-
-Além disso, ferramentas de inteligência artificial podem gerar um problema ainda mais grave: criar ou exagerar informações para aumentar artificialmente a compatibilidade entre candidato e vaga.
-
-O Aderente foi pensado para resolver esses dois problemas:
-
-1. **Ajudar o candidato a entender a relação entre seu currículo e uma vaga específica.**
-2. **Adaptar a apresentação do currículo sem inventar experiências, competências ou qualificações.**
-
-Essa diferença é fundamental, porque a ausência de uma informação no currículo não significa necessariamente que o candidato não possua aquela competência.
+Além das funcionalidades principais, a aplicação foi desenvolvida com foco em clareza, acessibilidade e facilidade de uso. A interface utiliza o shadcn/ui como design system e foi pensada para ser intuitiva e responsiva em diferentes dispositivos. A plataforma também possui suporte aos idiomas português e inglês, permitindo que o usuário alterne o idioma da interface conforme sua preferência. Outro requisito fundamental foi garantir a transparência das informações, evitando qualquer invenção ou alteração de dados do candidato durante a análise ou geração do currículo. As vagas são analisadas a partir de links externos fornecidos pelo próprio usuário, e o sistema sinaliza quando alguma informação não está disponível ou não pôde ser identificada.
 
 ## Prompts utilizados
 
-O primeiro prompt utilizado foi direcionado ao ChatGPT, para que criasse e formatasse o prompt ideal para o Lovable.
+O desenvolvimento da aplicação começou com um primeiro prompt direcionado ao ChatGPT, com o objetivo de estruturar os requisitos do projeto e transformá-los em um prompt completo para utilização no Lovable.
+
+**Primeiro prompt — ChatGPT**
 
 ```
 Chat, quero criar uma aplicação de matchmaking de vagas de emprego e criar versões do currículo do usuário que sejam ATS Friendly pra essa vaga. A aplicação será feita na lovable. Abaixo estão os requisitos da aplicação.
@@ -53,7 +48,9 @@ Chat, quero criar uma aplicação de matchmaking de vagas de emprego e criar ver
 
 Me mande o prompt ÚNICO em formato markdown.
 ```
-O segundo já direcionado ao Lovable foi o prompt abaixo.
+A partir desse direcionamento, foi criado um mega prompt específico para o Lovable, detalhando a estrutura da aplicação, fluxo de navegação, regras de negócio, componentes, critérios de análise, geração do currículo ATS e, principalmente, as regras de transparência e validação das informações.
+
+**Segundo prompt — Lovable**
 
 ```
 # Prompt para Lovable — Aplicação de Matchmaking de Vagas + Currículo ATS
@@ -1236,3 +1233,4 @@ A aplicação deve deixar claro que seu objetivo não é "fazer o candidato pare
 > **mostrar com precisão o quanto o currículo atual corresponde à vaga e ajudar o candidato a apresentar melhor aquilo que ele realmente sabe e já fez.**
 
 ```
+A principal preocupação durante a construção foi garantir que a aplicação utilizasse a IA para organizar, analisar e otimizar informações reais do candidato, e não para criar qualificações que não existem.
